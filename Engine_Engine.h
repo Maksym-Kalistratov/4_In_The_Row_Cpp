@@ -15,6 +15,46 @@ extern "C" {
 JNIEXPORT void JNICALL Java_Engine_Engine_greeter
   (JNIEnv *, jclass);
 
+/*
+ * Class:     Engine_Engine
+ * Method:    getColor
+ * Signature: (II)I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getColor
+  (JNIEnv *, jclass, jint, jint);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    nextMove
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_nextMove
+  (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    getState
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getState
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    getTurn
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getTurn
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    undoMove
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_Engine_Engine_undoMove
+  (JNIEnv *, jclass);
+
 #ifdef __cplusplus
 }
 #endif
