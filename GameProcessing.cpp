@@ -1,15 +1,18 @@
+#include <iostream>
 #include "GameProcessing.h"
 
 GameProcessing::GameProcessing() {
 board = {
         {0,0,0,0,0,0,0},
-        {0,0,2,1,2,0,0},
-        {0,0,2,2,2,0,0},
-        {0,0,2,2,2,0,0},
-        {0,2,2,2,2,2,0},
-        {0,2,2,0,2,2,0}
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0}
 
 };
+currentTurn = 1;
+gameState = 0;
 }
 
 
@@ -24,7 +27,20 @@ int GameProcessing::getColor(int x, int y) {
 }
 
 int GameProcessing::nextMove(int col) {
-    return 0;
+    if(board[0][col] != 0) {
+        std::cout << board[0][col] << std::flush;
+        return 1;
+    }
+    for(auto i = board.size()-1; i >= 0 ; --i){
+        if(board[i][col] == 0) {
+            board[i][col] = currentTurn;
+            currentTurn = (currentTurn == 1) ? 2 : 1;
+            return 0;
+
+        }
+
+    }
+    return 1;
 }
 
 int GameProcessing::getState() {
