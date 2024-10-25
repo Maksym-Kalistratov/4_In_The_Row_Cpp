@@ -25,7 +25,7 @@ public:
     static GameProcessing& getInstance();
 
 
-    auto getColor(int x, int y) -> int;
+    auto getColor(const int& x, const int& y) -> int;
 
     auto nextMove(int col) -> int;
 
@@ -37,6 +37,9 @@ public:
 
     auto setBoard(std::vector<std::vector<int>>& Iboard) -> void;
 
+    auto detectVictory(const int& x,const int& y) -> void;
+
+    auto scanLine (const int& x, const int& y, const int& dx, const int& dy, const int& player) -> bool;
     //bool isWinningMove(int lastCol, int lastRow);
 
 };

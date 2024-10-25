@@ -22,11 +22,11 @@ GameProcessing& GameProcessing::getInstance() {
 }
 
 
-int GameProcessing::getColor(int x, int y) {
+auto GameProcessing::getColor(const int& x, const int& y) -> int {
     return board[x][y];
 }
 
-int GameProcessing::nextMove(int col) {
+auto GameProcessing::nextMove(int col) -> int {
     if(board[0][col] != 0) {
         std::cout << board[0][col] << std::flush;
         return 1;
@@ -34,6 +34,7 @@ int GameProcessing::nextMove(int col) {
     for(auto i = board.size()-1; i >= 0 ; --i){
         if(board[i][col] == 0) {
             board[i][col] = currentTurn;
+            detectVictory(i,col);
             currentTurn = (currentTurn == 1) ? 2 : 1;
             return 0;
 
@@ -43,18 +44,55 @@ int GameProcessing::nextMove(int col) {
     return 1;
 }
 
-int GameProcessing::getState() {
-    return 0;
+auto GameProcessing::getState() -> int {
+    return gameState;
 }
 
-int GameProcessing::getTurn() {
-    return 0;
+auto GameProcessing::getTurn() -> int {
+    return currentTurn;
 }
 
-void GameProcessing::undoMove() {
+auto GameProcessing::undoMove() -> void {
 
 }
 
-void GameProcessing::setBoard(std::vector<std::vector<int>> &Iboard) {
+auto GameProcessing::setBoard(std::vector<std::vector<int>> &Iboard) -> void {
 board = Iboard;
+}
+
+auto GameProcessing::detectVictory(const int &x,const int &y) -> void {
+  auto player = board[x][y];
+    if( scanLine(x, y, 0, 1, player)  // Горизонталь (вправо-влево)
+            || scanLine(x, y, 1, 0, player )  // Вертикаль (вверх-вниз)
+            || scanLine(x, y, 1, 1,player )  // Диагональ (слева направо)
+            || scanLine(x, y, 1, -1,  player)) {
+        gameState = player;
+        std::cout << "Win!\n" << std::flush;
+        std::cout << player << std::flush;
+    }
+}
+auto GameProcessing::scanLine (const int& x, const int& y, const int& dx, const int& dy,  const int& player) -> bool {
+    auto count = 0;
+    auto currX = 0;
+    auto currY = 0;
+    for (auto i = 0; i <= 3; ++i) {
+        currX = x + (dx * i);
+        currY = y + (dy * i);
+        if (currX >= 0 && currX < board.size() && currY >= 0 && currY < board[0].size()) {
+            if (board[currX][currY] == player) count += 1;
+            else break;
+        }
+        else break;
+    }
+    for (auto i = -1; i >= -3; --i) {
+        currX = x + (dx * i);
+        currY = y + (dy * i);
+        if (currX >= 0 && currX < board.size() && currY >= 0 && currY < board[0].size()) {
+            if (board[currX][currY] == player) count += 1;
+            else break;
+        }
+        else break;
+    }
+    if (count >= 4) return true;
+    else return false;
 }
