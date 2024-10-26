@@ -8,11 +8,11 @@
 
 class GameProcessing {
 private:
-    int rows = 6;
-    int cols = 7;
+   const int rows = 6;
+   const int cols = 7;
     std::vector<std::vector<int>> board;
     int currentTurn;
-    std::vector<int> moveHistory;
+    std::vector<int> count;
     int gameState;
 
     GameProcessing();
@@ -39,8 +39,13 @@ public:
 
     auto detectVictory(const int& x,const int& y) -> void;
 
-    auto scanLine (const int& x, const int& y, const int& dx, const int& dy, const int& player) -> bool;
-    //bool isWinningMove(int lastCol, int lastRow);
+    auto detectDraw() -> void;
+
+    auto scanLine(const int& x, const int& y, const int& dx, const int& dy, const int& player) -> bool;
+
+    auto resetBoard() -> void;
+
+    auto getCount(int i) -> int;
 
 };
 

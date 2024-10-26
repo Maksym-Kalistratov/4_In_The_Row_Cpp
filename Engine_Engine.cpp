@@ -15,11 +15,19 @@ JNIEXPORT auto JNICALL Java_Engine_Engine_nextMove
         (JNIEnv *, jclass, jint col) -> jint{
     return GameProcessing::getInstance().nextMove(col-1);
 }
-JNIEXPORT jint JNICALL Java_Engine_Engine_getTurn
-        (JNIEnv *, jclass){
+JNIEXPORT auto JNICALL Java_Engine_Engine_getTurn
+        (JNIEnv *, jclass) -> jint{
     return GameProcessing::getInstance().getTurn();
 }
-JNIEXPORT jint JNICALL Java_Engine_Engine_getState
-        (JNIEnv *, jclass){
+JNIEXPORT auto JNICALL Java_Engine_Engine_getState
+        (JNIEnv *, jclass) -> jint{
     return GameProcessing::getInstance().getState();
+}
+JNIEXPORT auto JNICALL Java_Engine_Engine_resetBoard
+        (JNIEnv *, jclass) -> void{
+    GameProcessing::getInstance().resetBoard();
+}
+JNIEXPORT auto JNICALL Java_Engine_Engine_getCount
+        (JNIEnv *, jclass, jint i) -> jint {
+    return GameProcessing::getInstance().getCount(i);
 }

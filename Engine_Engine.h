@@ -55,6 +55,30 @@ JNIEXPORT jint JNICALL Java_Engine_Engine_getTurn
 JNIEXPORT void JNICALL Java_Engine_Engine_undoMove
   (JNIEnv *, jclass);
 
+/*
+ * Class:     Engine_Engine
+ * Method:    resetBoard
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_Engine_Engine_resetBoard
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    getCount
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getCount
+  (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    testCase
+ * Signature: ([[III)I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_testCase
+  (JNIEnv *, jclass, jobjectArray, jint, jint);
+
 #ifdef __cplusplus
 }
 #endif

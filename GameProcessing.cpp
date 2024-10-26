@@ -2,17 +2,8 @@
 #include "GameProcessing.h"
 
 GameProcessing::GameProcessing() {
-board = {
-        {0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0}
-
-};
-currentTurn = 1;
-gameState = 0;
+resetBoard();
+count = {0,0};
 }
 
 
@@ -35,6 +26,7 @@ auto GameProcessing::nextMove(int col) -> int {
         if(board[i][col] == 0) {
             board[i][col] = currentTurn;
             detectVictory(i,col);
+            detectDraw();
             currentTurn = (currentTurn == 1) ? 2 : 1;
             return 0;
 
@@ -67,6 +59,7 @@ auto GameProcessing::detectVictory(const int &x,const int &y) -> void {
             || scanLine(x, y, 1, 1,player )  // Диагональ (слева направо)
             || scanLine(x, y, 1, -1,  player)) {
         gameState = player;
+        count[player-1] += 1;
         std::cout << "Win!\n" << std::flush;
         std::cout << player << std::flush;
     }
@@ -95,4 +88,26 @@ auto GameProcessing::scanLine (const int& x, const int& y, const int& dx, const 
     }
     if (count >= 4) return true;
     else return false;
+}
+auto GameProcessing::resetBoard() -> void{
+    board = {
+            {0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0},
+            {0,0,0,0,0,0,0}
+
+    };
+    currentTurn = 1;
+    gameState = 0;
+}
+auto GameProcessing::getCount(int i) -> int {
+    return count[i];
+}
+
+auto GameProcessing::detectDraw() -> void {
+    if(std::find_if(board.begin(), board.end(), [](const auto& row) {
+        return std::find(row.begin(), row.end(), 0) != row.end();
+    }) != board.end() && gameState==0) gameState = 3;
 }
