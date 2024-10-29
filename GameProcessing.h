@@ -43,9 +43,12 @@ public:
 
     auto scanLine(const int& x, const int& y, const int& dx, const int& dy, const int& player) -> bool;
 
-    auto resetBoard() -> void;
+    auto resetBoard(bool resetCount) -> void;
 
     auto getCount(int i) -> int;
+
+    auto getBoardSize() -> int;
+    auto getBoardSize(int row) -> int;
 
 };
 

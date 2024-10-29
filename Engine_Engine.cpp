@@ -24,10 +24,18 @@ JNIEXPORT auto JNICALL Java_Engine_Engine_getState
     return GameProcessing::getInstance().getState();
 }
 JNIEXPORT auto JNICALL Java_Engine_Engine_resetBoard
-        (JNIEnv *, jclass) -> void{
-    GameProcessing::getInstance().resetBoard();
+        (JNIEnv *, jclass, jboolean resetCount) -> void{
+    GameProcessing::getInstance().resetBoard(resetCount);
 }
 JNIEXPORT auto JNICALL Java_Engine_Engine_getCount
         (JNIEnv *, jclass, jint i) -> jint {
     return GameProcessing::getInstance().getCount(i);
+}
+JNIEXPORT auto JNICALL Java_Engine_Engine_getBoardSize__
+        (JNIEnv *, jclass)-> jint{
+    return GameProcessing::getInstance().getBoardSize();
+}
+JNIEXPORT auto JNICALL Java_Engine_Engine_getBoardSize__I
+        (JNIEnv *, jclass, jint row)-> jint{
+    return GameProcessing::getInstance().getBoardSize(row);
 }

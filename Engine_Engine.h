@@ -9,14 +9,6 @@ extern "C" {
 #endif
 /*
  * Class:     Engine_Engine
- * Method:    greeter
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_Engine_Engine_greeter
-  (JNIEnv *, jclass);
-
-/*
- * Class:     Engine_Engine
  * Method:    getColor
  * Signature: (II)I
  */
@@ -49,19 +41,11 @@ JNIEXPORT jint JNICALL Java_Engine_Engine_getTurn
 
 /*
  * Class:     Engine_Engine
- * Method:    undoMove
- * Signature: ()V
- */
-JNIEXPORT void JNICALL Java_Engine_Engine_undoMove
-  (JNIEnv *, jclass);
-
-/*
- * Class:     Engine_Engine
  * Method:    resetBoard
- * Signature: ()V
+ * Signature: (Z)V
  */
 JNIEXPORT void JNICALL Java_Engine_Engine_resetBoard
-  (JNIEnv *, jclass);
+  (JNIEnv *, jclass, jboolean);
 
 /*
  * Class:     Engine_Engine
@@ -69,6 +53,22 @@ JNIEXPORT void JNICALL Java_Engine_Engine_resetBoard
  * Signature: (I)I
  */
 JNIEXPORT jint JNICALL Java_Engine_Engine_getCount
+  (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    getBoardSize
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getBoardSize__
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     Engine_Engine
+ * Method:    getBoardSize
+ * Signature: (I)I
+ */
+JNIEXPORT jint JNICALL Java_Engine_Engine_getBoardSize__I
   (JNIEnv *, jclass, jint);
 
 /*

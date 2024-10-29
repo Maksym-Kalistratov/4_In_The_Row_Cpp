@@ -2,7 +2,7 @@
 #include "GameProcessing.h"
 
 GameProcessing::GameProcessing() {
-resetBoard();
+resetBoard(true);
 count = {0,0};
 }
 
@@ -60,8 +60,8 @@ auto GameProcessing::detectVictory(const int &x,const int &y) -> void {
             || scanLine(x, y, 1, -1,  player)) {
         gameState = player;
         count[player-1] += 1;
-        std::cout << "Win!\n" << std::flush;
-        std::cout << player << std::flush;
+        //std::cout << "Win!\n" << std::flush;
+        //std::cout << player << std::flush;
     }
 }
 auto GameProcessing::scanLine (const int& x, const int& y, const int& dx, const int& dy,  const int& player) -> bool {
@@ -89,7 +89,7 @@ auto GameProcessing::scanLine (const int& x, const int& y, const int& dx, const 
     if (count >= 4) return true;
     else return false;
 }
-auto GameProcessing::resetBoard() -> void{
+auto GameProcessing::resetBoard(bool resetCount) -> void{
     board = {
             {0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0},
@@ -101,6 +101,7 @@ auto GameProcessing::resetBoard() -> void{
     };
     currentTurn = 1;
     gameState = 0;
+    if(resetCount) count = {0,0};
 }
 auto GameProcessing::getCount(int i) -> int {
     return count[i];
@@ -109,5 +110,12 @@ auto GameProcessing::getCount(int i) -> int {
 auto GameProcessing::detectDraw() -> void {
     if(std::find_if(board.begin(), board.end(), [](const auto& row) {
         return std::find(row.begin(), row.end(), 0) != row.end();
-    }) != board.end() && gameState==0) gameState = 3;
+    }) == board.end() && gameState==0) gameState = 3;
+}
+
+auto GameProcessing::getBoardSize() -> int{
+    return board.size();
+}
+auto GameProcessing::getBoardSize(int row) -> int{
+    return board[row].size();
 }
