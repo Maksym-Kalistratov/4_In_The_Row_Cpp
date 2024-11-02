@@ -3,7 +3,7 @@ project(UTP_Project1_Lib)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(UTP_Project1_Lib SHARED library.cpp
+add_library(UTP_Project1_Lib SHARED
         Engine_Engine.cpp
         GameProcessing.cpp
         GameProcessing.h)

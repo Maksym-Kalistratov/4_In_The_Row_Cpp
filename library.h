@@ -1,6 +1,0 @@
-#ifndef UTP_PROJECT1_LIB_LIBRARY_H
-#define UTP_PROJECT1_LIB_LIBRARY_H
-
-void hello();
-
-#endif //UTP_PROJECT1_LIB_LIBRARY_H
