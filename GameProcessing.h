@@ -33,10 +33,6 @@ public:
 
     auto getTurn() -> int;
 
-    auto undoMove() -> void;
-
-    auto setBoard(std::vector<std::vector<int>>& Iboard) -> void;
-
     auto detectVictory(const int& x,const int& y) -> void;
 
     auto detectDraw() -> void;

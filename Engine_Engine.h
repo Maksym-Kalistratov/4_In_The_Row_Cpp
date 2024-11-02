@@ -71,14 +71,6 @@ JNIEXPORT jint JNICALL Java_Engine_Engine_getBoardSize__
 JNIEXPORT jint JNICALL Java_Engine_Engine_getBoardSize__I
   (JNIEnv *, jclass, jint);
 
-/*
- * Class:     Engine_Engine
- * Method:    testCase
- * Signature: ([[III)I
- */
-JNIEXPORT jint JNICALL Java_Engine_Engine_testCase
-  (JNIEnv *, jclass, jobjectArray, jint, jint);
-
 #ifdef __cplusplus
 }
 #endif

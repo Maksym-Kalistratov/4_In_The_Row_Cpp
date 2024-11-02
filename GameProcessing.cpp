@@ -3,7 +3,6 @@
 
 GameProcessing::GameProcessing() {
 resetBoard(true);
-count = {0,0};
 }
 
 
@@ -44,13 +43,6 @@ auto GameProcessing::getTurn() -> int {
     return currentTurn;
 }
 
-auto GameProcessing::undoMove() -> void {
-
-}
-
-auto GameProcessing::setBoard(std::vector<std::vector<int>> &Iboard) -> void {
-board = Iboard;
-}
 
 auto GameProcessing::detectVictory(const int &x,const int &y) -> void {
   auto player = board[x][y];
@@ -60,8 +52,6 @@ auto GameProcessing::detectVictory(const int &x,const int &y) -> void {
             || scanLine(x, y, 1, -1,  player)) {
         gameState = player;
         count[player-1] += 1;
-        //std::cout << "Win!\n" << std::flush;
-        //std::cout << player << std::flush;
     }
 }
 auto GameProcessing::scanLine (const int& x, const int& y, const int& dx, const int& dy,  const int& player) -> bool {
